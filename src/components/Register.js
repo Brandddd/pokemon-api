@@ -29,7 +29,7 @@ export function Register() {
     try {
       // await por la función asincrona, ya que es una petición hacía un backend.
       await signUp(user.email, user.password); // Al momento de hacer el submit en el form, se hara la funcion de autenticacion de firebase
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       setError(error.code); // Capturando y asignando el codigo de los errores para mostrarlos en el body
       if (error.code === "auth/internal-error") {
@@ -65,14 +65,6 @@ export function Register() {
           type="text"
           name="name"
           placeholder="tu nombre"
-          onChange={handleChange}
-        />
-
-        <label htmlFor="lastname">Apellido</label>
-        <input
-          type="text"
-          name="lastname"
-          placeholder="tu apellido"
           onChange={handleChange}
         />
 

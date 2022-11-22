@@ -1,14 +1,22 @@
 import { Route, Routes } from "react-router-dom"; // Dos componentes, Routes para definir multiples rutas, y Route para definir una sola ruta
 import { Home } from "./components/Home";
 import { Login } from "./components/Login";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Register } from "./components/Register";
-import { AuthProvider } from "./context/Authentication";  // Importación del componente que se creó, AuthProvider
+import { AuthProvider } from "./context/Authentication"; // Importación del componente que se creó, AuthProvider
 
 export default function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
