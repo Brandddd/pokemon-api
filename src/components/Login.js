@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useAuth } from "../context/Authentication"; // Llamamos el useAuth para el Auth de firebase para poder registrar el usuario
-import { useNavigate } from "react-router-dom"; // Hook de navegación entre paginas
+import { Link, useNavigate } from "react-router-dom"; // Hook de navegación entre paginas
+import { Alert } from "./Alert";
+// Imágenes
+import login_image from "../assets/icon_login.png";
 
 // Es la misma que el register, necesita el mismo objeto tipo user y setUser
 export function Login() {
@@ -39,27 +42,67 @@ export function Login() {
 
   //Retorna formulario de registro
   return (
-    <div>
-      {error && <p>{error}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Correo electrónico</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="email@domain.com"
-          onChange={handleChange}
-        />
+    <div className="w-full max-w-xs m-auto">
+      <div>
+        <img alt="Imagen" src={login_image} />
+      </div>
 
-        <label htmlFor="password">Contraseña</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="********"
-          onChange={handleChange}
-        />
+      {error && <Alert message={error} />}
 
-        <button>Iniciar sesión</button>
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded-lg px-8 pt-8 pb-10 mb-10"
+      >
+
+        <p className="text-lg font-semibold mb-4 flex justify-center m-auto">
+          Pokemon API login
+        </p>
+
+        <div className="mb-4">
+          <label
+            htmlFor="email"
+            className="block text-gray-600 text-sm font-sans mb-2"
+          >
+            Correo electrónico
+          </label>
+          <input
+            type="email"
+            name="email"
+            placeholder="email@domain.com"
+            className="shadow appeareance-none border rounded w-full py-2 px-3 text-gray-600 leading-tight focus:outline_none focus:shadow-outline"
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="password"
+            className="block text-gray-600 text-sm font-sans mb-2"
+          >
+            Contraseña
+          </label>
+          <input
+            type="password"
+            name="password"
+            placeholder="********"
+            className="shadow appeareance-none border rounded w-full py-2 px-3 text-gray-600 leading-tight focus:outline_none focus:shadow-outline"
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="mb-6 flex items-center justify-center">
+          <button className="bg-red-600 font-sans flex w-full justify-center rounded-md border border-transparent py-2 px-4 text-sm text-white hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2">
+            Iniciar sesión
+          </button>
+        </div>
+
+        <p className="mt-2 text-sm flex justify-between px-3 text-black">
+          ¿No tienes una cuenta? {" "}
+          <Link to="/register" className="font-sans hover:text-blue-500">
+            Registrate
+          </Link>
+        </p>
       </form>
     </div>
   );
