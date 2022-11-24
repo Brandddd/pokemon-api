@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useAuth } from "../context/Authentication"; // Llamamos el useAuth para el Auth de firebase para poder registrar el usuario
 import { Link, useNavigate } from "react-router-dom"; // Hook de navegación entre paginas
 import { Alert } from "./Alert";
+// Imágenes
+import register_image from "../assets/icon_register.png"
 
 export function Register() {
   // Funcion para actualizar la información del usuario que se registre
@@ -42,6 +44,10 @@ export function Register() {
   //Retorna formulario de registro
   return (
     <div className="w-full max-w-xs m-auto">
+      <div>
+        <img src={register_image} alt="Imagen" />
+      </div>
+
       {error && (
         <p>
           <Alert message={error} />
